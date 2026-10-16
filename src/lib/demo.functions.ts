@@ -7,7 +7,7 @@ import { z } from "zod";
  * Credentials are intentionally public and only unlock fictional demo records.
  */
 export const DEMO_ACCOUNTS = {
-  worker: { id: "00000000-0000-4000-a000-000000000001", email: "maya@demo.beeready.app", name: "Maya Okafor" },
+  worker: { id: "00000000-0000-4000-a000-000000000001", email: "maya@demo.beeready.app", name: "Tina Okafor" },
   business: { id: "00000000-0000-4000-b000-000000000001", email: "harbour@demo.beeready.app", name: "The Harbour Pub" },
 } as const;
 export const DEMO_PASSWORD = "BeeReady-Demo-2026!";

@@ -40,8 +40,8 @@ Role 30 · Skills 15 · Distance 20 (inside travel radius only) · Experience 15
 Every card has "Why this score?" with the point breakdown.
 
 ## 4. Demo
-Sign-in page → **Worker: Maya** or **Harbour Pub**. Demo records show a "Demo data" badge; testimonials are labelled as examples.
-Core flow: Harbour Pub → Bee SOS → Maya sees the SOS banner (realtime) → Apply → Harbour Pub → Accept → both dashboards show Confirmed.
+Sign-in page → **Worker: Tina** or **Harbour Pub**. Demo records show a "Demo data" badge; testimonials are labelled as examples.
+Core flow: Harbour Pub → Bee SOS → Tina sees the SOS banner (realtime) → Apply → Harbour Pub → Accept → both dashboards show Confirmed.
 
 ## 5. Local setup
 ```bash
@@ -60,7 +60,7 @@ In Lovable click **Publish**. For self-hosting: `bun run build` deploys to Cloud
 
 **0:30 – The solution (30s).** Bee Ready Agency: *Short staffed? Bee Ready.* Businesses post a shift or hit **Bee SOS**. Workers flip one switch — **Ready to Work**. **Bee Match** connects them in minutes.
 
-**1:00 – Live demo (75s).** Harbour Pub sends a Bee SOS: 2 bartenders, tonight, 6–11, £16/hour. Switch to Maya: an urgent alert appears instantly with "99% Match — experienced bartender, available tonight, within travel radius". Open "Why this score?" — every point is explained. She applies. Back to the pub: accept. Both dashboards show the confirmed shift, with earnings estimate for Maya.
+**1:00 – Live demo (75s).** Harbour Pub sends a Bee SOS: 2 bartenders, tonight, 6–11, £16/hour. Switch to Tina: an urgent alert appears instantly with "99% Match — experienced bartender, available tonight, within travel radius". Open "Why this score?" — every point is explained. She applies. Back to the pub: accept. Both dashboards show the confirmed shift, with earnings estimate for Tina.
 
 **2:15 – Trust & humanity (30s).** Bee Match is transparent rules, not a black box. Workers' homes are never shown — only approximate areas. Double-bookings are blocked at the database. Workers set their own rate and radius: dignity and flexibility, not gig-economy roulette.
 
