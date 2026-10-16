@@ -13,7 +13,7 @@ export const DEMO_ACCOUNTS = {
 export const DEMO_PASSWORD = "BeeReady-Demo-2026!";
 
 export const ensureDemoAccount = createServerFn({ method: "POST" })
-  .inputValidator((input: unknown) => z.object({ kind: z.enum(["worker", "business"]) }).parse(input))
+  .validator((input: unknown) => z.object({ kind: z.enum(["worker", "business"]) }).parse(input))
   .handler(async ({ data }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const acct = DEMO_ACCOUNTS[data.kind];
