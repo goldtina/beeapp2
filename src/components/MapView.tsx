@@ -1,7 +1,7 @@
 import { lazy, Suspense, type ComponentProps } from "react";
 import { ClientOnly } from "@tanstack/react-router";
 import type ShiftMapType from "./ShiftMap";
-export type { MapPoint } from "./map-types";
+export type { MapPoint } from "./ShiftMap";
 
 const ShiftMap = lazy(() => import("./ShiftMap"));
 

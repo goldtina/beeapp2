@@ -174,3 +174,11 @@
 }
 
 .leaflet-container { font-family: var(--font-sans); border-radius: var(--radius); z-index: 0; }
+
+/* Map markers (Leaflet divIcons / vectors) */
+.bee-pin { width: 28px; height: 28px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--honey); border: 2px solid var(--charcoal); display: grid; place-items: center; box-shadow: var(--shadow-soft); }
+.bee-pin span { width: 8px; height: 8px; border-radius: 9999px; background: var(--charcoal); }
+.bee-pin-sos { background: var(--sos); animation: pulse-sos 1.8s ease-in-out infinite; }
+.bee-area { fill: var(--charcoal); fill-opacity: 0.18; stroke: var(--charcoal); stroke-opacity: 0.5; stroke-width: 1.5; }
+.bee-area-me { fill: var(--honey); fill-opacity: 0.35; stroke: var(--charcoal); stroke-width: 2; }
+.bee-radius { fill: var(--honey); fill-opacity: 0.08; stroke: var(--honey); stroke-dasharray: 6 6; stroke-width: 2; }
