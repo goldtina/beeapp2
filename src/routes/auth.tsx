@@ -115,7 +115,7 @@ function AuthPage() {
             <p className="mt-1 text-sm text-muted-foreground">One click signs you into a fictional, pre-filled account.</p>
             <div className="mt-4 grid grid-cols-2 gap-3">
               <Button variant="dark" onClick={() => tryDemo("worker")} disabled={!!busy}>
-                {busy === "worker" ? <Loader2 className="animate-spin" /> : <ChefHat />} Worker: Maya
+                {busy === "worker" ? <Loader2 className="animate-spin" /> : <ChefHat />} Worker: Tina
               </Button>
               <Button variant="hero" onClick={() => tryDemo("business")} disabled={!!busy}>
                 {busy === "business" ? <Loader2 className="animate-spin" /> : <Briefcase />} Harbour Pub
