@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1792156377353,
+      "tag": "0000_bee_ready_core",
+      "breakpoints": true
+    }
+  ]
 }
