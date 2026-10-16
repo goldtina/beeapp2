@@ -32,18 +32,20 @@ export const BUSINESS_TYPES = ["Pub", "Restaurant", "Bar", "Café", "Hotel", "Ev
 
 /** Approximate neighbourhood centres — we never store exact home addresses for workers. */
 export const AREAS: { name: string; lat: number; lng: number }[] = [
-  { name: "Wapping", lat: 51.5046, lng: -0.056 },
-  { name: "Shadwell", lat: 51.511, lng: -0.0567 },
-  { name: "Bermondsey", lat: 51.4979, lng: -0.0637 },
-  { name: "Borough", lat: 51.5011, lng: -0.0943 },
-  { name: "Tower Hill", lat: 51.5098, lng: -0.0766 },
-  { name: "Spitalfields", lat: 51.5196, lng: -0.0749 },
-  { name: "Whitechapel", lat: 51.5196, lng: -0.0596 },
-  { name: "Limehouse", lat: 51.5123, lng: -0.0396 },
-  { name: "Canary Wharf", lat: 51.5054, lng: -0.0235 },
-  { name: "Shoreditch", lat: 51.5255, lng: -0.0786 },
-  { name: "Soho", lat: 51.5136, lng: -0.1365 },
-  { name: "Camden", lat: 51.539, lng: -0.1426 },
+  { name: "Main Street", lat: 36.1405, lng: -5.353 },
+  { name: "Casemates Square", lat: 36.1447, lng: -5.354 },
+  { name: "Ocean Village", lat: 36.1475, lng: -5.358 },
+  { name: "Marina Bay", lat: 36.148, lng: -5.3565 },
+  { name: "Queensway Quay", lat: 36.1395, lng: -5.356 },
+  { name: "Westside", lat: 36.134, lng: -5.357 },
+  { name: "Town Range", lat: 36.139, lng: -5.3525 },
+  { name: "Upper Town", lat: 36.143, lng: -5.3505 },
+  { name: "Glacis", lat: 36.1495, lng: -5.351 },
+  { name: "Catalan Bay", lat: 36.144, lng: -5.342 },
+  { name: "South District", lat: 36.125, lng: -5.348 },
+  { name: "Europa Point", lat: 36.11, lng: -5.346 },
 ];
 
-export const DEFAULT_CENTER = { lat: 51.508, lng: -0.065 };
+/** Gibraltar, GX11 1AA */
+export const DEFAULT_CENTER = { lat: 36.1408, lng: -5.3536 };
+export const LOCATION_LABEL = "Gibraltar, GX11 1AA";
