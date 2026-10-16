@@ -15,3 +15,4 @@
 - Worker locations are coarsened by a DB trigger and rendered as areas, never pins — privacy requirement.
 - Leaflet is only loaded through `MapView` (lazy + ClientOnly) — Leaflet touches `window` on import.
 - Demo judge accounts use fixed UUIDs matching seeded rows and are created on demand by `ensureDemoAccount` — seed data must not depend on auth.users rows.
+- Anonymous visitors never read `worker_profiles` directly; the public site uses the `public_ready_workers` function, which returns limited fields only (privacy).
