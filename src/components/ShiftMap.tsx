@@ -29,7 +29,7 @@ export default function ShiftMap({
 
   useEffect(() => {
     if (!el.current || map.current) return;
-    map.current = L.map(el.current, { scrollWheelZoom: false }).setView([center.lat, center.lng], 13);
+    map.current = L.map(el.current, { scrollWheelZoom: false }).setView([center.lat, center.lng], 14);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "&copy; OpenStreetMap contributors",
       maxZoom: 18,

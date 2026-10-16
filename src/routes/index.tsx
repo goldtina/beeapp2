@@ -129,7 +129,7 @@ function Index() {
       <section className="bg-charcoal text-charcoal-foreground">
         <div className="honeycomb">
           <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-            <SectionTitle eyebrow="Urgent shifts" title="Live shifts near Tower Bridge" inverted />
+            <SectionTitle eyebrow="Urgent shifts" title="Live shifts across Gibraltar" inverted />
             {error ? (
               <p className="mt-8 text-sos">Couldn't load shifts right now. Please refresh.</p>
             ) : (
