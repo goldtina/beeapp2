@@ -2,4 +2,4 @@
 - [x] Bee Ready MVP (landing, auth, worker & business dashboards, Bee Match, Bee SOS, map, demo data, docs)
 - [x] Relocate app to Gibraltar (GX11 1AA): areas, map centre, demo venues/workers, copy
 - [x] Fix 3 selected RLS findings (worker/business/shift public reads) + manage_security_finding
-- [x] Publish app with Lovable URL slug "beereadyangency"
+- [x] Publish app with Lovable URL slug "beereadyagency"
