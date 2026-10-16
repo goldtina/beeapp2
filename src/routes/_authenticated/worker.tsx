@@ -70,7 +70,9 @@ function WorkerDashboard() {
       .map((s) => ({ shift: s, match: beeMatch(profile.data!, s) }))
       .sort((a, b) => Number(b.shift.is_urgent && b.match.score >= 60) - Number(a.shift.is_urgent && a.match.score >= 60) || b.match.score - a.match.score);
   }, [profile.data, shifts.data]);
-  const sos = matches.filter((m) => m.shift.is_urgent && m.match.score >= 60 && !appliedIds.has(m.shift.id));
+  const booked = (apps.data ?? []).filter((a) => a.status === "confirmed").map((a) => a.shift);
+  const overlaps = (x: ShiftWithBusiness) => booked.some((b) => b.id !== x.id && new Date(b.starts_at) < new Date(x.ends_at) && new Date(b.ends_at) > new Date(x.starts_at));
+  const sos = matches.filter((m) => m.shift.is_urgent && m.match.score >= 60 && !appliedIds.has(m.shift.id) && !overlaps(m.shift));
 
   const toggleReady = useMutation({
     mutationFn: async (v: boolean) => {
@@ -188,7 +190,7 @@ function WorkerDashboard() {
                 {shifts.error && <ErrorBox error={shifts.error} />}
                 {shifts.data && matches.length === 0 && <Empty title="No open shifts nearby" body="New shifts appear here in real time. Switch on Ready to Work to get Bee SOS alerts." />}
                 {matches.map(({ shift, match }) => (
-                  <MatchCard key={shift.id} shift={shift} match={match} applied={appliedIds.has(shift.id)} busy={apply.isPending} onApply={() => apply.mutate({ shiftId: shift.id, score: match.score })} />
+                  <MatchCard key={shift.id} shift={shift} match={match} applied={appliedIds.has(shift.id)} clash={overlaps(shift)} busy={apply.isPending} onApply={() => apply.mutate({ shiftId: shift.id, score: match.score })} />
                 ))}
               </div>
               <div className="lg:sticky lg:top-24 lg:self-start">
@@ -240,7 +242,7 @@ function WorkerDashboard() {
   );
 }
 
-function MatchCard({ shift: s, match, applied, busy, onApply }: { shift: ShiftWithBusiness; match: MatchResult; applied: boolean; busy: boolean; onApply: () => void }) {
+function MatchCard({ shift: s, match, applied, clash, busy, onApply }: { shift: ShiftWithBusiness; match: MatchResult; applied: boolean; clash: boolean; busy: boolean; onApply: () => void }) {
   const [open, setOpen] = useState(false);
   return (
     <div className={`card-hover rounded-3xl border bg-card p-5 shadow-soft ${s.is_urgent ? "border-sos/50" : "border-border"}`}>
@@ -260,7 +262,7 @@ function MatchCard({ shift: s, match, applied, busy, onApply }: { shift: ShiftWi
         </div>
         <div className="flex items-center gap-3 sm:flex-col sm:items-end">
           <p className="font-display text-2xl font-semibold">{gbp(Number(s.hourly_rate))}<span className="text-xs text-muted-foreground">/h</span></p>
-          {applied ? <StatusBadge status="applied" /> : <Button variant="hero" size="sm" disabled={busy} onClick={onApply}>Apply</Button>}
+          {applied ? <StatusBadge status="applied" /> : clash ? <span className="text-xs text-muted-foreground">Overlaps a booked shift</span> : <Button variant="hero" size="sm" disabled={busy} onClick={onApply}>Apply</Button>}
         </div>
       </div>
       <button className="mt-3 text-xs font-semibold text-muted-foreground underline-offset-4 hover:underline" onClick={() => setOpen(!open)}>
