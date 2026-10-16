@@ -26,8 +26,7 @@ export const Route = createFileRoute("/_authenticated/worker")({
 });
 
 function WorkerDashboard() {
-  const { context } = { context: Route.useRouteContext() };
-  const uid = context.user.id;
+  const uid = Route.useRouteContext().user.id;
   const me = useMe();
   const navigate = useNavigate();
   const qc = useQueryClient();
