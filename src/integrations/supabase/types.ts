@@ -269,6 +269,11 @@ export type Database = {
         Args: { _match_score: number; _shift_id: string }
         Returns: string
       }
+      business_has_listing: { Args: { _business_id: string }; Returns: boolean }
+      business_linked_to_worker: {
+        Args: { _worker_id: string }
+        Returns: boolean
+      }
       complete_shift: {
         Args: { _rating: number; _shift_id: string }
         Returns: undefined
@@ -284,6 +289,21 @@ export type Database = {
         Args: { _match_score: number; _shift_id: string; _worker_id: string }
         Returns: string
       }
+      public_ready_workers: {
+        Args: { _limit?: number }
+        Returns: {
+          area_name: string
+          display_name: string
+          experience_years: number
+          headline: string
+          lat: number
+          lng: number
+          rating: number
+          rating_count: number
+          roles: string[]
+          user_id: string
+        }[]
+      }
       respond_to_application: {
         Args: { _accept: boolean; _app_id: string }
         Returns: undefined
@@ -293,6 +313,11 @@ export type Database = {
         Args: { _name: string; _role: Database["public"]["Enums"]["app_role"] }
         Returns: undefined
       }
+      worker_linked_to_business: {
+        Args: { _business_id: string }
+        Returns: boolean
+      }
+      worker_linked_to_shift: { Args: { _shift_id: string }; Returns: boolean }
     }
     Enums: {
       app_role: "worker" | "business"
