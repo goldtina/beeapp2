@@ -38,12 +38,7 @@ function useLanding() {
           .order("is_urgent", { ascending: false })
           .order("starts_at")
           .limit(6),
-        supabase
-          .from("worker_profiles")
-          .select("user_id, full_name, headline, roles, experience_years, rating, rating_count, area_name, lat, lng")
-          .eq("ready_to_work", true)
-          .order("rating", { ascending: false })
-          .limit(6),
+        supabase.rpc("public_ready_workers", { _limit: 6 }),
       ]);
       if (shifts.error) throw shifts.error;
       if (workers.error) throw workers.error;
@@ -158,7 +153,7 @@ function Index() {
                   center={DEFAULT_CENTER}
                   points={[
                     ...(data?.shifts ?? []).map((s) => ({ id: s.id, lat: s.lat, lng: s.lng, kind: "shift" as const, urgent: s.is_urgent, label: `${s.business?.name}: ${s.role}` })),
-                    ...(data?.workers ?? []).filter((w) => w.lat != null).map((w) => ({ id: w.user_id, lat: w.lat!, lng: w.lng!, kind: "worker" as const, label: `${w.full_name.split(" ")[0]} · approx. ${w.area_name}` })),
+                    ...(data?.workers ?? []).filter((w) => w.lat != null).map((w) => ({ id: w.user_id, lat: w.lat!, lng: w.lng!, kind: "worker" as const, label: `${w.display_name} · approx. ${w.area_name}` })),
                   ]}
                 />
               </div>
@@ -176,10 +171,10 @@ function Index() {
             <div key={w.user_id} className="card-hover rounded-3xl border border-border bg-card p-6 shadow-soft">
               <div className="flex items-center gap-4">
                 <div className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-honey font-display text-lg font-semibold">
-                  {w.full_name.split(" ").map((p) => p[0]).join("")}
+                  {w.display_name.split(" ").map((p) => p[0]).join("")}
                 </div>
                 <div>
-                  <p className="font-semibold">{w.full_name.split(" ")[0]} {w.full_name.split(" ")[1]?.[0]}.</p>
+                  <p className="font-semibold">{w.display_name}</p>
                   <p className="text-sm text-muted-foreground">{w.headline}</p>
                 </div>
               </div>
