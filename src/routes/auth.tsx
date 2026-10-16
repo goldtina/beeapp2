@@ -16,8 +16,8 @@ import type { Role } from "@/lib/session";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (s: Record<string, unknown>): { as?: Role } => ({
-    as: s.as === "worker" || s.as === "business" ? s.as : undefined,
+  validateSearch: (s: Record<string, unknown>): { as?: Role | undefined } => ({
+    as: s["as"] === "worker" || s["as"] === "business" ? (s["as"] as Role) : undefined,
   }),
   head: () => ({
     meta: [
@@ -54,7 +54,7 @@ function AuthPage() {
     setBusy("signin");
     const { error } = await supabase.auth.signInWithPassword({ email: String(f.get("email")), password: String(f.get("password")) });
     setBusy(null);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     navigate({ to: "/dashboard" });
   }
 
@@ -69,7 +69,7 @@ function AuthPage() {
       options: { emailRedirectTo: `${window.location.origin}/dashboard`, data: { full_name: String(f.get("name")), intended_role: role } },
     });
     setBusy(null);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     if (data.session) navigate({ to: "/dashboard" });
     else setCheckEmail(true);
   }

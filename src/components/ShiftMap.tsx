@@ -20,7 +20,7 @@ export default function ShiftMap({
 }: {
   points: MapPoint[];
   center: { lat: number; lng: number };
-  radiusKm?: number;
+  radiusKm?: number | undefined;
   height?: number;
 }) {
   const el = useRef<HTMLDivElement>(null);

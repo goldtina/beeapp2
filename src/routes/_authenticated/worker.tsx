@@ -195,7 +195,7 @@ function WorkerDashboard() {
                 <MapView
                   height={480}
                   center={p.lat != null ? { lat: p.lat, lng: p.lng! } : DEFAULT_CENTER}
-                  radiusKm={p.lat != null ? p.travel_radius_km : undefined}
+                  {...(p.lat != null ? { radiusKm: p.travel_radius_km } : {})}
                   points={[
                     ...(p.lat != null ? [{ id: "me", lat: p.lat, lng: p.lng!, kind: "me" as const, label: "Your approximate area" }] : []),
                     ...matches.map(({ shift: s, match }) => ({ id: s.id, lat: s.lat, lng: s.lng, kind: "shift" as const, urgent: s.is_urgent, label: `${s.business?.name} · ${s.role} · ${match.score}%` })),
@@ -334,7 +334,7 @@ function WorkerProfileForm({ p }: { p: WorkerProfile }) {
   const set = <K extends keyof typeof f>(k: K, v: (typeof f)[K]) => setF((x) => ({ ...x, [k]: v }));
 
   function locate() {
-    if (!navigator.geolocation) return toast.error("Location isn't available in this browser");
+    if (!navigator.geolocation) { toast.error("Location is not available in this browser"); return; }
     navigator.geolocation.getCurrentPosition(
       (pos) => { setF((x) => ({ ...x, lat: pos.coords.latitude, lng: pos.coords.longitude, area_name: x.area_name || "Near me" })); toast.success("Approximate location set (rounded to ~1 km)"); },
       () => toast.error("Couldn't get your location"),
@@ -357,7 +357,7 @@ function WorkerProfileForm({ p }: { p: WorkerProfile }) {
         </div>
         <F label="Approximate area">
           <div className="flex gap-2">
-            <Select value={AREAS.some((a) => a.name === f.area_name) ? f.area_name : undefined} onValueChange={(v) => { const a = AREAS.find((x) => x.name === v)!; setF((x) => ({ ...x, area_name: a.name, lat: a.lat, lng: a.lng })); }}>
+            <Select value={AREAS.some((a) => a.name === f.area_name) ? f.area_name : ""} onValueChange={(v) => { const a = AREAS.find((x) => x.name === v)!; setF((x) => ({ ...x, area_name: a.name, lat: a.lat, lng: a.lng })); }}>
               <SelectTrigger><SelectValue placeholder={f.area_name || "Choose an area"} /></SelectTrigger>
               <SelectContent>{AREAS.map((a) => <SelectItem key={a.name} value={a.name}>{a.name}</SelectItem>)}</SelectContent>
             </Select>

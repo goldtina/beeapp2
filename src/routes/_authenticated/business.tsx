@@ -388,7 +388,7 @@ function BusinessProfileForm({ b }: { b: BusinessProfile }) {
       </Fld>
       <Fld label="Street / venue address"><Input value={f.address} onChange={(e) => setF({ ...f, address: e.target.value })} /></Fld>
       <Fld label="Area (sets map location)">
-        <Select value={AREAS.some((a) => a.name === f.area_name) ? f.area_name : undefined} onValueChange={(v) => { const a = AREAS.find((x) => x.name === v)!; setF({ ...f, area_name: a.name, lat: a.lat, lng: a.lng }); }}>
+        <Select value={AREAS.some((a) => a.name === f.area_name) ? f.area_name : ""} onValueChange={(v) => { const a = AREAS.find((x) => x.name === v)!; setF({ ...f, area_name: a.name, lat: a.lat, lng: a.lng }); }}>
           <SelectTrigger><SelectValue placeholder={f.area_name || "Choose an area"} /></SelectTrigger>
           <SelectContent>{AREAS.map((a) => <SelectItem key={a.name} value={a.name}>{a.name}</SelectItem>)}</SelectContent>
         </Select>

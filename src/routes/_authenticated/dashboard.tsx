@@ -31,9 +31,9 @@ function Dashboard() {
 
   useEffect(() => {
     const meta = data?.user?.user_metadata ?? {};
-    const intended = sessionStorage.getItem("bee-intended-role") ?? meta.intended_role;
+    const intended = sessionStorage.getItem("bee-intended-role") ?? meta["intended_role"];
     if (intended === "worker" || intended === "business") setRole(intended);
-    if (meta.full_name) setName(String(meta.full_name));
+    if (meta["full_name"]) setName(String(meta["full_name"]));
   }, [data?.user]);
 
   async function submit(e: React.FormEvent) {
@@ -41,7 +41,7 @@ function Dashboard() {
     setBusy(true);
     const { error } = await supabase.rpc("set_my_role", { _role: role, _name: name });
     setBusy(false);
-    if (error) return toast.error(errMsg(error));
+    if (error) { toast.error(errMsg(error)); return; }
     sessionStorage.removeItem("bee-intended-role");
     await qc.invalidateQueries({ queryKey: ["me"] });
   }
